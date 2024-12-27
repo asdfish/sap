@@ -19,9 +19,9 @@ namespace sap {
   class Application {
     const Flag* flags;
     std::size_t flags_length;
-    const void (*error_callback) (const char* offending_argument, ParsingError error, void* user_data);
+    void (*error_callback) (const char* offending_argument, ParsingError error, void* user_data);
     void* error_callback_user_data;
-    const void (*value_callback) (const char* value, void* user_data);
+    void (*value_callback) (const char* value, void* user_data);
     void* value_callback_user_data;
 
     constexpr void call_error_callback(const char* offending_argument, ParsingError error) const {
@@ -58,9 +58,9 @@ namespace sap {
     constexpr Application(
       const Flag* i_flags,
       std::size_t i_flags_length,
-      const void (*i_error_callback) (const char* offending_argument, ParsingError error, void* user_data) = nullptr,
+      void (*i_error_callback) (const char* offending_argument, ParsingError error, void* user_data) = nullptr,
       void* i_error_callback_user_data = nullptr,
-      const void (*i_value_callback) (const char* value, void* user_data) = nullptr,
+      void (*i_value_callback) (const char* value, void* user_data) = nullptr,
       void* i_value_callback_user_data = nullptr
     ):
       flags(i_flags),
