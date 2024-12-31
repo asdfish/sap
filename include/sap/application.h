@@ -2,19 +2,18 @@
 #define SAP_APPLICATION_H
 
 #include <stdbool.h>
+#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif // __cplusplus
 
   struct s_error_t;
+  struct s_flag_t;
 
   struct s_application_t {
-    bool (*flag_short_callback) (char id, const char* argument, void* data);
-    void* flag_short_data;
-
-    bool (*flag_long_callback) (const char* id, const char* argument, void* data);
-    void* flag_long_data;
+    struct s_flag_t* flag;
+    size_t flags_length;
 
     void (*error_callback) (const struct s_error_t* error, void* data);
     void* error_callback_data;

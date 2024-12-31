@@ -1,3 +1,6 @@
 *.o
 *.gch
 *.a
+*.exe
+
+/test/test

@@ -5,25 +5,22 @@
 extern "C" {
 #endif // __cplusplus
 
-  enum s_error_type_t {
-    ERROR_TYPE_NULL_ARGUMENT,
-  };
-  typedef enum s_error_type_t s_error_type_t;
-
-  struct s_error_description_null_argument_t {
-    const char* function_name;
-    const char* parameter_name;
-  };
-  typedef struct s_error_description_null_argument_t s_error_description_null_argument_t;
-
-  union s_error_description_t {
-    s_error_description_null_argument_t null_argument;
-  };
-  typedef union s_error_description_t s_error_description_t;
-
   struct s_error_t {
-    s_error_description_t description;
-    s_error_type_t type;
+    union {
+      struct {
+	const char* function_name;
+	const char* parameter_name;
+	const char* reason;
+      } invalid_parameter;
+      struct {
+	const char* function_name;
+	const char* parameter_name;
+      } null_parameter;
+    } description;
+    enum {
+      ERROR_TYPE_INVALID_PARAMETER,
+      ERROR_TYPE_NULL_PARAMETER,
+    } type;
   };
   typedef struct s_error_t s_error_t;
 
