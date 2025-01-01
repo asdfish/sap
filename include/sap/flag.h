@@ -13,7 +13,8 @@ extern "C" {
 
     bool take_argument;
 
-    void (*callback) (void* data);
+    // argument may be null
+    void (*callback) (const char* argument, void* data);
     void* callback_data;
   };
   typedef struct s_flag_t s_flag_t;

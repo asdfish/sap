@@ -8,15 +8,16 @@
 extern "C" {
 #endif // __cplusplus
 
-  struct s_error_t;
   struct s_flag_t;
 
   struct s_application_t {
-    struct s_flag_t* flag;
+    struct s_flag_t* flags;
     size_t flags_length;
 
-    void (*error_callback) (const struct s_error_t* error, void* data);
-    void* error_callback_data;
+    void (*unknown_flag_long_callback) (const char* flag_long, void* data);
+    void* unknown_flag_long_callback_data;
+    void (*unknown_flag_short_callback) (char flag_short, void* data);
+    void* unknown_flag_short_callback_data;
 
     void (*value_callback) (const char* value, void* data);
     void* value_callback_data;

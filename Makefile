@@ -25,10 +25,8 @@ $(if $(wildcard $1),$\
 endef
 
 all: libsap.a
-test: test/test
-
-test/test:
-	${MAKE} -C $(dir $@)
+test: libsap.a
+	${MAKE} -C test
 
 %.h.gch: %.h
 	$(call COMPILE,$<,$@)
@@ -41,7 +39,7 @@ libsap.a: ${SAP_REQUIREMENTS}
 remove/%:
 	$(call REMOVE,$(patsubst remove/%,%,$@))
 
-clean: $(foreach FILE,${SAP_REQUIREMENTS},remove/${FILE})
+clean: $(foreach FILE,${SAP_REQUIREMENTS} libsap.a,remove/${FILE})
 	${MAKE} -C test clean
 
 .PHONY: all clean remove/% test
