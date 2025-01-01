@@ -11,7 +11,7 @@ extern "C" {
   struct s_flag_t;
 
   struct s_application_t {
-    struct s_flag_t* flags;
+    const struct s_flag_t* flags;
     size_t flags_length;
 
     void (*unknown_flag_long_callback) (const char* flag_long, void* data);
